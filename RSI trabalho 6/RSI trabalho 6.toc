@@ -1,0 +1,21 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {chapter}{\nonumberline PARTE I -- Distribuição de \textit {Software}}{1}{chapter*.3}%
+\contentsline {section}{\nonumberline Obtenha o ficheiro ISO da distribuição Linux Mint}{1}{section*.5}%
+\contentsline {section}{\nonumberline Verifique a forma de verificação de integridade e autenticidade proposta pela comunidade da distribuição Linux Mint}{1}{section*.7}%
+\contentsline {section}{\nonumberline Proceda à verificação de integridade e autenticidade dos ficheiros obtidos}{1}{section*.9}%
+\contentsline {chapter}{\nonumberline PARTE II -- \textit {Software} Seguro}{3}{chapter*.10}%
+\contentsline {section}{\nonumberline Entrega segura de software instalável e suas atualizações}{3}{section*.12}%
+\contentsline {section}{\nonumberline Processos de segurança considerados}{3}{section*.14}%
+\contentsline {chapter}{\nonumberline PARTE III -- Deteção de Vulnerabilidades}{5}{chapter*.15}%
+\contentsline {section}{\nonumberline Explore a ferramenta Nmap}{5}{section*.17}%
+\contentsline {section}{\nonumberline Utilize a ferramenta Nmap para obter informações do servidor scanme.nmap.org}{5}{section*.19}%
+\contentsline {section}{\nonumberline Utilize a ferramenta Nmap para obter informação de uma máquina na rede}{6}{section*.21}%
+\contentsline {section}{\nonumberline Identifique possíveis fragilidades detectadas}{7}{section*.23}%
+\contentsline {section}{\nonumberline Identifique mitigações possíveis de aplicar}{8}{section*.25}%
+\contentsline {chapter}{\nonumberline PARTE IV - Deteção de Vulnerabilidades}{10}{chapter*.26}%
+\contentsline {section}{\nonumberline Explore a ferramenta \texttt {snort}}{10}{section*.28}%
+\contentsline {section}{\nonumberline A ferramenta \texttt {snort} pode funcionar como \textit {sniffer} para pacotes da camada 2}{10}{section*.30}%
+\contentsline {section}{\nonumberline Utilização do \texttt {snort} como IDS pressupõe a utilização de regras que podem ser personalizadas}{12}{section*.32}%
+\contentsline {section}{\nonumberline Iniciar o \texttt {snort} como IDS e visualizar os alertas}{13}{section*.34}%
+\contentsline {section}{\nonumberline Com base no abordado diga como poderia utilizar um NIDS para garantir mais segurança numa rede informática}{14}{section*.36}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

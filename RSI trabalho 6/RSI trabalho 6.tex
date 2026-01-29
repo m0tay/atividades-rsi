@@ -1,0 +1,420 @@
+\documentclass[headings=optiontoheadandtoc]{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+\usepackage{minted} 
+\usepackage{xcolor} 
+\usepackage{hyperref, xurl}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+
+
+% Variáveis
+\newcommand{\imgwidth}{0.9}
+\newcommand{\cadeiracurto}{RSI}
+\newcommand{\cadeiralongo}{Redes e Segurança Informática}
+\newcommand{\docente}{Mário Pinto}
+\newcommand{\docenteemail}{mjp@ua.pt}
+\newcommand{\discente}{Douglas Lobo}
+\newcommand{\discenteemail}{douglascnlobo@ua.pt}
+\newcommand{\discentenmec}{127111}
+\newcommand{\titulotrabalho}{Trabalho 6\\\textit{Software} Seguro e\\Deteção de Vulnerabilidades}
+
+
+% Remover numeração visível de capítulos/seções
+\setcounter{secnumdepth}{-1}
+\renewcommand*{\numberline}[1]{}
+
+\graphicspath{{./img/}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\raisebox{-0.2\height}{\small \cadeiracurto}}
+\fancyfoot[C]{\raisebox{-0.4\height}{\includegraphics[height=2cm]{logo.png}}}
+\fancyfoot[R]{\raisebox{-0.2\height}{\thepage}}
+\setlength{\footskip}{33pt}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\chapterpagestyle}{fancy}
+
+\usetikzlibrary{er,positioning}
+
+\urldef{\fossurl}\url{https://en.wikipedia.org/wiki/Free_and_open-source_software}
+\urldef{\verifyyouriso}\url{https://linuxmint-installation-guide.readthedocs.io/en/latest/verify.html}
+\urldef{\xssurl}\url{https://owasp.org/www-community/attacks/xss}
+\urldef{\sqlurl}\url{https://owasp.org/www-community/attacks/SQL_Injection}
+\urldef{\wormurl}\url{https://en.wikipedia.org/wiki/Write_once_read_many}
+\urldef{\tlsurl}\url{https://datatracker.ietf.org/doc/html/rfc8446}
+\urldef{\xurl}\url{https://datatracker.ietf.org/doc/html/rfc5280}
+\urldef{\hmacurl}\url{https://datatracker.ietf.org/doc/html/rfc2104}
+\urldef{\urlbo}\url{https://en.wikipedia.org/wiki/Back_Orifice}
+\urldef{\failtobanurl}\url{https://wiki.archlinux.org/title/Fail2ban}
+
+\title{
+    \vspace{-1cm}
+    \begin{center}
+        \Large\textbf{UNIVERSIDADE DE AVEIRO}\\[0.5cm]
+        \large CTeSP -- Desenvolvimento de Software\\[1.5cm]
+        \rule{\textwidth}{2pt}\\[0.5cm]
+        {\Huge\bfseries \titulotrabalho}\\[0.3cm]
+        \rule{\textwidth}{2pt}\\[2cm]
+    \end{center}
+}
+
+\author{
+    \begin{center}
+          \textbf{\large \discente}\\[0.3cm]
+          Número mecanogr\'afico: \discentenmec\\
+          Email: \discenteemail\\[1cm]
+    \end{center}
+}
+
+\date{
+    \vspace{1.5cm}
+    \begin{center}
+        Aveiro, Portugal\\
+        \today
+    \end{center}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\LARGE\bfseries UNIVERSIDADE DE AVEIRO}\\[0.5cm]
+    {\large CTeSP -- Desenvolvimento de Software}\\[2cm]
+    
+    \rule{\textwidth}{3pt}\\[0.5cm]
+    {\Huge\bfseries \titulotrabalho}\\[0.3cm]
+    {\Large\textit{\cadeiralongo}}\\[0.5cm]
+    \rule{\textwidth}{3pt}\\[3cm]
+    
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \textbf{Apresentado por:}\\[0.5cm]
+        \discente\\
+        Número mecanogr\'afico: \discentenmec\\
+        Email: \discenteemail
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \textbf{Orientado por:}\\[0.5cm]
+        Professor: \docente\\
+        Email: \docenteemail
+    \end{minipage}
+    
+    \vfill
+    
+    {\large Aveiro, Portugal}\\
+    {\large \today}
+    
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+\setcounter{chapter}{1} % começa numeração interna correta
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% -----------------------
+% O documento começa aqui
+% -----------------------
+
+\chapter{PARTE I -- Distribuição de \textit{Software}}
+
+\section{Obtenha o ficheiro ISO da distribuição Linux Mint}
+Acedendo ao \textit{website} do Linux Mint e dirigindo-me à aba de \textit{downloads} selecionei o "sabor"~Xfce descrito como \textit{light, simple, efficient}. 
+
+\section{Verifique a forma de verificação de integridade e autenticidade proposta pela comunidade da distribuição Linux Mint}
+
+"Anyone can produce fake ISO images, it is your responsibility to check you are downloading the official ones."~avisa-nos a direção do Linux Mint. Assim procedi ao manual fornecido e pus-me a ler e executar as verificações de integridade e autenticidade lá dispostas.\footnote{\verifyyouriso}
+
+\section{Proceda à verificação de integridade e autenticidade dos ficheiros obtidos}
+
+Efetuado o \textit{download} da ISO e das \textit{hashes}, parti para o terminal onde apliquei os passos elencados na documentação.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\imgwidth\linewidth]{files-downloaded.png}
+    \caption{Arquivos baixados do \textit{website} oficial do Linux Mint}
+    \label{fig:files-downloaded}
+\end{figure}
+
+Primeiro verifiquei a integridade das \textit{hashes} com os seguintes comandos:
+
+% \begin{minted}{console}
+% $ sha256sum -b linuxmint-22.1-xfce-64bit.iso
+% 6451496af35e6855ffe1454f061993ea9cb884d2b4bc8bf17e7d5925ae2ae86d *linuxmint-22.1-xfce-64bit.iso
+% $ sha256sum -c --ignore-missing sha256sum.txt
+% linuxmint-22.1-xfce-64bit.iso: OK
+% \end{minted}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\imgwidth\linewidth]{sha256sum-verification.png}
+  \caption{Verificando a \textit{hash} com \texttt{sha256sum}}
+  \label{fig:sha256sum-verification}
+\end{figure}
+            
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\imgwidth\linewidth]{shasum-verification.png}
+  \caption{Verificando a \textit{hash} com \texttt{shasum}}
+  \label{fig:shasum-verification}
+\end{figure}
+
+Segundo, verifiquei-lhe a autenticidade com os seguinte comandos:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\imgwidth\linewidth]{gpg-grab.png}
+  \caption{Adquirindo a chave pública do Linux Mint}
+  \label{fig:gpg-grab}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\imgwidth\linewidth]{gpg-verification.png}
+  \caption{Verificando autenticidade: \texttt{good signature} e a \textit{fingerprint} condiz com a provida no \textit{website}}
+  \label{fig:gpg-verification}
+\end{figure}
+            
+Após este processo consigo assegurar dentro dos limites dos meus conhecimentos e presumindo que o \textit{website} do Linux Mint não foi adulterado em segredo por um agente malicioso que, sim, se trata de uma ISO oficial inalterada.
+            
+\chapter{PARTE II -- \textit{Software} Seguro}
+
+\section{Entrega segura de software instalável e suas atualizações}
+
+Concebamos um \textit{software} aos moldes de um gestor de frota para uma entidade que oferece serviços de manutenção de refrigeradores que será utilizado pelas equipes de técnicos para reservarem veículos dinamicamente para os seus serviços. O sistema é distribuído como aplicação instalável nos dispositivos das equipas e deve suportar atualizações futuras, tanto funcionais como de segurança.
+
+A aplicação centraliza a gestão das reservas, permitindo que os técnicos consultem a disponibilidade da frota e reservem veículos conforme a agenda de intervenções. Os dados são sincronizados com um servidor central, onde também são processadas as atualizações e os acessos administrativos. O ambiente de uso prevê mobilidade, ligação remota e operação contínua durante o horário de expediente.
+
+\section{Processos de segurança considerados}
+
+\textbf{Autenticação e controle de acesso} \\
+Cada técnico tem credenciais próprias e só pode ver e reservar veículos. Supervisores e administradores têm permissões ampliadas, como aprovar ou rejeitar uma reserva e configurar o sistema de modo \textit{ad hoc}. O sistema valida sessões com \texttt{tokens} e bloqueia acessos não autorizados. A autenticação baseia-se em sessões geridas por \texttt{JWT} (JSON Web Tokens), com verificação periódica do estado da sessão.
+
+\medskip
+\textbf{Validação de dados e uso legítimo} \\
+Nenhuma reserva entra no sistema sem passar por validações no servidor. Evita abusos, inconsistências e tentativas de entrada de dados maliciosos, como \textit{SQL injections}\footnote{\sqlurl} (atacando diretamente a base de dados, mitigado com consultas preparadas) e \textit{XSS}\footnote{\xssurl} (execução de scripts maliciosos, mitigado com sanitização e codificação de entradas).
+
+\medskip
+\textbf{Comunicação segura} \\
+Toda a comunicação com o servidor é feita via \texttt{HTTPS}, utilizando o protocolo \texttt{TLS} (Transport Layer Security)\footnote{\tlsurl}. Não há tráfego exposto. Dados sensíveis, como credenciais e reservas, são protegidos em trânsito, ou seja, no transporte pela rede.
+
+\medskip
+\textbf{Integridade e assinaturas} \\
+O instalador e o binário da aplicação são assinados digitalmente com certificados \texttt{X.509}\footnote{\xurl} (padrão de infraestrutura de chave pública) emitidos por uma autoridade certificadora (\textit{CA}) interna ou reconhecida. A aplicação cliente valida a assinatura antes da instalação ou atualização. Só é possível instalar versões autenticadas e autorizadas. Ao molde daquilo que o Linux Mint oferecia, será também possível que técnicos de sistema na entidade possam, como últimato, verificar manualmente a \texttt{hash} da aplicação (ex.: \texttt{SHA-256}, algoritmo que gera um identificador único de 256 bits). Isso garante que o \textit{software} não foi adulterado e que provém de uma fonte confiável.
+
+\medskip
+\textbf{Assinaturas de ações e verificação automática} \\
+Para além da autenticação inicial, cada ação relevante executada na aplicação (como reservar, alterar ou cancelar uma reserva) é localmente assinada digitalmente utilizando uma chave secreta única por utilizador. Esta assinatura, gerada com \texttt{HMAC-SHA-256} (código de autenticação baseado em \textit{hash}, usando a função \texttt{SHA-256} com uma chave secreta), assegura que apenas o legítimo titular da conta poderia ter originado a ação, e que os dados não foram manipulados no caminho. O servidor valida automaticamente cada requisição comparando o valor enviado com aquele que seria esperado a partir da chave conhecida. Tentativas de falsificação ou adulteração são detectadas e rejeitadas de imediato, permitindo resposta automatizada a incidentes.
+
+\medskip
+\textbf{Atualizações seguras} \\
+As atualizações são distribuídas em pacotes assinados digitalmente com a chave privada associada ao certificado \texttt{X.509}. O cliente valida a assinatura usando a chave pública incluída no certificado. O processo segue o modelo de segurança aplicado em sistemas como o \texttt{APT} (Advanced Package Tool, usado em distribuições como Debian/Ubuntu) e é automático, sem requerer intervenção do utilizador. Em caso de falha, existe mecanismo de \textit{rollback} para garantir o funcionamento contínuo com a versão anterior validada.
+
+\medskip
+\textbf{Logs e rastreabilidade} \\
+Cada ação relevante (\textit{sign in}, reserva, cancelamento, falhas) gera logs com data, hora, IP e utilizador. Os registos são protegidos contra edição (\texttt{WORM} -- \textit{write once, read many})\footnote{\wormurl} e podem ser assinados localmente com o certificado \texttt{X.509}, usando algoritmos como \texttt{SHA-256 + RSA} (comprovação de integridade e autenticidade). Posteriormente, são enviados ao servidor por canal \texttt{TLS} para consolidação e auditoria.
+
+\medskip
+\textbf{Tolerância a falhas} \\
+Se o servidor estiver inacessível, a aplicação entra em modo \textit{offline} com acesso restrito e operação local segura. As alterações são armazenadas em ficheiros temporários assinados digitalmente (com \texttt{HMAC} e \texttt{timestamp}) para posterior validação. Quando a ligação é restabelecida, os dados são sincronizados com o \textit{backend}, mantendo a integridade no sistema.
+
+\chapter{PARTE III -- Deteção de Vulnerabilidades}
+
+\section{Explore a ferramenta Nmap}
+
+Acedendo ao \textit{website} do Nmap (\textit{Network Mapper}) aprende-se que se trata de um utilitário FOSS\footnote{\fossurl} para descoberta de rede e auditoria de segurança. O Nmap usa pacotes IP brutos de novas maneiras para determinar quais \textit{hosts} estão disponíveis na rede, quais serviços (nome e versão do aplicativo) entre outros dados.
+
+\section{Utilize a ferramenta Nmap para obter informações do servidor scanme.nmap.org}
+
+Com a permissão do Nmap de escaneá-los utilizo o comando provido por eles:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\imgwidth\linewidth]{nmap-scanme.png}
+  \caption{Resultado do comando}
+  \label{fig:nmap-scanme}
+\end{figure}
+
+Interpretando os resultados tenho que o servidor está ativo e respondendo pelo IP \texttt{45.33.32.156}, existe um IPv6, este, contudo, não foi escaneado. Foram escaneadas 1000 portas TCP, destas destaco:
+
+\begin{itemize}
+
+    \item 993 destas estão fechadas (conn-refused);
+    \item 7 portas mostradas: 5 abertas, 2 filtradas.
+
+\end{itemize}
+
+\medskip
+\textbf{22/tcp ssh} \\
+O serviço SSH está aberto, rodando OpenSSH 6.6.1p1, versão típica de um sistema Ubuntu antigo. É possível inferir que esta máquina executa Ubuntu Linux, o que ajuda a descobrir o SO do alvo. Há também algumas chavees púbiclas úteis para verificar integridade da identidade do servidor.
+
+\medskip
+\textbf{80/tcp http} \\
+A página feita para fins educativos como suscitado no \textit{header} com o texto "Go ahead and ScanMe!", em Apache httpd 2.4.7.
+
+\medskip
+\textbf{135, 139, 445/tcp serviços Windows} \\
+Esses serviços típicos de Windows possivelmente estão sendo utilizados para proteção ou redirecionamento, conquanto se trata de um sistema Ubuntu.
+
+\medskip
+\textbf{9929/tcp nping-echo} \\
+Usado como um simples utilitário de ping para detectar \textit{hosts} ativos, também pode ser usado como um gerador de pacotes brutos para testes de estresse de pilha de rede, envenenamento de \texttt{ARP}, ataques de negação de serviço, rastreamento de rotas, etc. O novo modo de eco do Nping permite que os usuários vejam como os pacotes mudam em trânsito entre os \textit{hosts} de origem e de destino.
+
+\medskip
+\textbf{31337/tcp tcpwrapped} \\
+O \texttt{tcpwrapped} significa que o serviço está protegido por uma camada genérica de TCP wrapperk, o Nmap não consegue identificar o que realmente roda lá. Também é uma porta famosa por comumente ser utilizada como \textit{backdoor}.\footnote{\urlbo}
+
+\section{Utilize a ferramenta Nmap para obter informação de uma máquina na rede}
+
+Decidi então mapear o meu servidor pessoal e obtive os seguintes resultados.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{nmap-scankanagawa.png}
+  \caption{Resultado do escaneamento do \textit{host} do meu servidor o kanagawa}
+  \label{fig:nmap-scankanagawa}
+\end{figure}
+
+Interpretando os resultados,\footnote{Aqui mostro os resultados do comando "\mintinline{console}{$ nmap 192.168.1.133}"~sem a flag \texttt{-A}, pois ao utilizá-la vinha muito código \texttt{html} junto do \textit{output}, irei disponibilizar este \textit{output} na íntegra junto do atual documento} constato que a máquina alvo está ativa e a responder com o nome de rede \textit{kanagawa}. O tempo de resposta foi bastante baixo (cerca de 3ms), indicando proximidade na rede local -- como espearado. Foram escaneadas 1000 portas TCP, das quais destaco:
+
+\begin{itemize}
+    \item 996 estão filtradas (sem resposta), o que indica presença de \textit{firewall} ou filtragem por IP;
+    \item 4 portas identificadas: 2 abertas, 2 fechadas.
+\end{itemize}
+
+\section{Identifique possíveis fragilidades detectadas}
+
+\medskip
+\textbf{22/tcp ssh} \\
+Porta aberta com o serviço \texttt{OpenSSH 9.6p1} em sistema Ubuntu recente. A autenticação é feita via protocolo \texttt{SSH 2.0} e as chaves públicas \texttt{ECDSA} e \texttt{ED25519} foram identificadas, o que permite validar posteriormente a identidade do servidor. 
+
+\medskip
+\textbf{80/tcp http} \\
+Porta aberta com um servidor HTTP baseado em \texttt{Golang net/http}. A página de entrada tem como título \textit{CasaOS}, uma interface de gestão de dispositivos e serviços domésticos.
+
+\medskip
+\textbf{443 e 8443/tcp https e https-alt} \\
+Ambas as portas encontram-se fechadas. Isso indica ausência de canal seguro para acesso ao \texttt{CasaOS}. O tráfego web está atualmente desprotegido, o que representa um risco à confidencialidade e integridade da informação transmitida na minha rede local.
+
+\medskip
+\textbf{Análise adicional} \\
+Apesar da resposta \texttt{HTTP} ter sido parcialmente reconhecida, o \texttt{Nmap} não conseguiu identificar totalmente o serviço \textit{web}, tendo sugerido o envio da assinatura para futura identificação. Isto pode dever-se ao uso de tecnologias menos convencionais ou personalizadas.
+
+\section{Identifique mitigações possíveis de aplicar}
+
+\medskip
+\textbf{Ativação de HTTPS com certificado válido} \\
+O serviço web \texttt{CasaOS} deve ser protegido com TLS. Para isso, pode-se configurar um \textit{reverse proxy}, como o \texttt{Nginx}, na porta \texttt{443/tcp}, com suporte a certificados válidos (ex.: \texttt{Let's Encrypt}). Embora a configuração pareça acessível, reconheço que ainda não tenho experiência prática com esse tipo de infraestrutura, o que torna o processo algo desafiante para mim neste momento.
+
+\medskip
+\textbf{Fortalecer acesso SSH} \\
+Já utilizo autenticação apenas por chave pública, sem uso de senhas, para aceder ao serviço \texttt{SSH}, o que é uma boa prática de segurança. Como melhorias adicionais, poderia restringir o acesso a IPs específicos através de firewall, e configurar ferramentas como o \texttt{fail2ban}\footnote{\failtobanurl} para mitigar ataques de força bruta.
+
+\medskip
+\textbf{Monitorização e atualizações contínuas} \\
+É importante garantir que serviços como o \texttt{OpenSSH} e o servidor HTTP em Go estejam atualizados com as últimas correções de segurança. A configuração de logs de acesso e alertas também ajuda na deteção precoce de comportamentos suspeitos.
+
+\medskip
+\textbf{Validação do software CasaOS} \\
+Sendo o \texttt{CasaOS} um software de terceiros, é recomendável validar sua origem e integridade. Isso inclui verificar assinaturas de binários, aplicar atualizações com frequência e auditar permissões de acesso locais.
+
+\medskip
+\textbf{Gestão de acessos com UFW} \\
+O sistema utiliza o \texttt{UFW} (\textit{Uncomplicated Firewall}) como camada de controle de tráfego de rede. As portas que tenho abertas explicitam que andei a testar coisas, decerto convém fechá-las.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{ufw-print.png}
+  \caption{Evidência do estado do meu \textit{firewall} no meu servidor pessoal}
+  \label{fig:ufw-print}
+\end{figure}
+            
+\chapter{PARTE IV - Deteção de Vulnerabilidades}
+
+\section{Explore a ferramenta \texttt{snort}}
+
+O \texttt{Snort} é um dos principais Sistemas de Prevenção de Intrusão (\textit{IPS}) de código aberto do mundo. Ele usa uma série de regras que ajudam a definir atividades maliciosas na rede, e aplica essas regras para identificar pacotes suspeitos, gerando alertas para os utilizadores.
+
+\section{A ferramenta \texttt{snort} pode funcionar como \textit{sniffer} para pacotes da camada 2}
+
+Ao utilizar o comando "\mintinline{console}{$ sudo snort -vde}", a ferramenta é executada em modo \textit{sniffer}, ou seja, apenas captura e exibe os pacotes da rede, sem aplicar regras nem gerar alertas. Essa execução mostra detalhes da camada de enlace (como endereços \texttt{MAC}), da camada de rede (como cabeçalhos IP), e ainda o conteúdo da carga útil (\textit{payload}) dos pacotes, em representação textual e hexadecimal.
+
+É uma forma prática de observar o tráfego bruto da rede em tempo real, especialmente útil para análise de segurança, testes de visibilidade e para compreender o comportamento dos protocolos.
+
+A seguir apresento uma amostra dos pacotes capturados na minha rede:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{snort-vde-1.png}
+  \caption{\textit{Output} inicial do \texttt{snort}}
+  \label{fig:snort-vde-1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{snort-vde-2.png}
+  \caption{\textit{Output} final do \texttt{snort}}
+  \label{fig:snort-vde-2}
+\end{figure}
+
+\section{Utilização do \texttt{snort} como IDS pressupõe a utilização de regras que podem ser personalizadas}
+
+Utilizando a regra de exemplo oferecida pelo professor, inserimo-la no ficheiro responsável por conter as regras locais:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{local-rules-icmp.png}
+  \caption{Adicionando a regra oferecida pelo professor}
+  \label{fig:local-rules-icmp}
+\end{figure}
+
+\section{Iniciar o \texttt{snort} como IDS e visualizar os alertas}
+
+Ao inicializar o \texttt{snort} como um IDS, abri outro terminal e realizei pings ao servidor e a outros dispositivos na rede. O resultado obtido foi o seguinte:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{icmp-detected.png}
+  \caption{Evidência dos resultados dos logs da IDS do \texttt{snort} e dos \textit{pings} feitos}
+  \label{fig:icmp-detected}
+\end{figure}
+            
+\section{Com base no abordado diga como poderia utilizar um NIDS para garantir mais segurança numa rede informática}
+
+Como vimos na UC, a utilização de um \textit{Network-based Intrusion Detection System} (\texttt{NIDS}) é uma forma prática de reforçar a segurança da rede, sobretudo quando se pretende acompanhar vulnerabilidades conhecidas ao nível dos protocolos ou da prestação de serviços — ataques a DNS, spoofing ARP ou simples scans de porta são bons exemplos disso.
+
+\medskip
+O NIDS funciona bem posicionado junto ao ponto de entrada da rede (por exemplo, junto ao router) e permite observar o tráfego em tempo real, quer se trate de assinaturas específicas de ataques quer de padrões anómalos. Um cenário típico como os que discutimos (reconhecimento externo, ataque, recrutamento) pode ser identificado com base nas tentativas de \textit{port scanning}, ligações suspeitas a serviços vulneráveis ou contactos a C\&C.
+
+\medskip
+Também é importante lembrar que o NIDS, para além de gerar alertas, pode integrar-se com outras ferramentas como \textit{honeypots} e mecanismos de logging, funcionando como mais uma fonte de eventos no ecossistema de deteção.
+
+\medskip
+A nível dos objetivos da segurança, a sua utilização contribui diretamente para:
+\begin{itemize}
+  \item preservar a \textbf{confidencialidade}, sinalizando fugas de dados;
+  \item garantir a \textbf{autenticidade}, como nos casos de spoofing;
+  \item manter a \textbf{disponibilidade}, detetando ataques como o DoS.
+\end{itemize}
+
+\medskip
+Uma ferramenta particularmente eficaz neste contexto é o \texttt{Snort}, um \texttt{NIDS} comportamental \textit{open source} amplamente utilizado. A sua flexibilidade na definição de regras e a capacidade de inspeção em múltiplas camadas tornam-no uma escolha robusta para ambientes que exigem deteção de intrusões em tempo real.
+
+\end{document}

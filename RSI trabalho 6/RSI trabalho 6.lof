@@ -1,0 +1,18 @@
+\babel@toc {brazil}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Arquivos baixados do \textit {website} oficial do Linux Mint}}{1}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Verificando a \textit {hash} com \texttt {sha256sum}}}{2}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Verificando a \textit {hash} com \texttt {shasum}}}{2}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Adquirindo a chave pública do Linux Mint}}{2}{figure.1.4}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Verificando autenticidade: \texttt {good signature} e a \textit {fingerprint} condiz com a provida no \textit {website}}}{2}{figure.1.5}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Resultado do comando}}{5}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Resultado do escaneamento do \textit {host} do meu servidor o kanagawa}}{7}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Evidência do estado do meu \textit {firewall} no meu servidor pessoal}}{9}{figure.1.3}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces \textit {Output} inicial do \texttt {snort}}}{11}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces \textit {Output} final do \texttt {snort}}}{12}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Adicionando a regra oferecida pelo professor}}{13}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Evidência dos resultados dos logs da IDS do \texttt {snort} e dos \textit {pings} feitos}}{14}{figure.1.4}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
